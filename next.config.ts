@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    // Ensure Turbopack resolves modules from this project root (OneDrive path)
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

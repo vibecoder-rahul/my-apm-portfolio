@@ -1,65 +1,432 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import CaseStudiesList from "../components/CaseStudiesList";
+
+const caseStudies = [
+  {
+    title: "Identifying and Solving Interview Readiness Drop-Offs in the Placement Funnel",
+    summary:
+      "Recovered placement conversions by removing scheduling friction in mock interview prep with an on-demand flow.",
+    tags: ["Interview readiness", "AI mocks", "Conversion"],
+    context:
+      "Students moved through assessments, followed by mock interviews with Success Coaches, and then final company interviews. Mock interviews were scheduled through Calendly and used company- and role-specific context with structured feedback. <span className=\"highlight-yellow\">At peak, ~1,200–1,500 students per month were reaching the mock interview stage</span>.",
+    problem:
+      "Over two months, <span className=\"highlight-yellow\">placement numbers declined</span> even though assessment pass rates and interview demand remained stable. Funnel analysis showed a clear drop during mock interview scheduling and attendance, which later reflected in weaker final interview performance. <span className=\"highlight-yellow\">~38% of eligible students did not schedule a mock</span>. <span className=\"highlight-yellow\">~27% of scheduled mocks were no-shows</span>.",
+    constraints: [
+      "Maintain placement outcomes without increasing Success Coach headcount",
+      "Keep preparation structured and role-specific, not generic",
+      "Fit within the existing placement product with minimal build effort",
+    ],
+    options: [
+      "Keep coach-led scheduled mocks (time friction persists)",
+      "Adopt external prep tools (costly, no placement context)",
+      "Design an on-demand, contextual AI mock interview within the placement journey",
+    ],
+    decision:
+      "Introduce an embedded, on-demand AI mock interview flow to remove scheduling dependency while keeping feedback structured and contextual.",
+    execution: [
+      "Mapped the full funnel to isolate where the drop was happening",
+      "Spoke with 50 students who cleared assessments but skipped mocks and failed final interviews to understand the real blocker",
+      "Found that time and commitment, not motivation, were the primary issues",
+      "Designed a flow where students could upload a resume, add a JD, receive role-specific and AI-generated questions, and take mocks anytime",
+      "Integrated the flow into the placement product and iterated entry points and copy to emphasize flexibility",
+    ],
+    outcomes: [
+      "<span className=\"highlight-yellow\">Strong adoption of the on-demand mock flow after launch</span>",
+      "Improved interview preparedness through consistent, unbiased feedback",
+      "<span className=\"highlight-yellow\">Placement conversions recovered after the dip</span>",
+      "Positive feedback from students on flexibility and immediacy",
+      "<span className=\"highlight-yellow\">Final interview shortlisting rate improved by ~15–18% compared to the previous two months</span>",
+      "<span className=\"highlight-yellow\">Mock completion rate increased from ~62% (scheduled) to ~88% (on-demand)</span>",
+    ],
+    learnings: [
+      "Time-based friction can quietly break high-intent funnels",
+      "Flexibility often matters more than the depth of guidance alone",
+      "AI works best when paired with clear intent and real context",
+      "Combining funnel data with direct user conversations helped surface the real constraint",
+    ],
+  },
+  {
+    title: "Topin Tech: Building Trust First to Unlock Growth in an Assessment Platform",
+    summary:
+      "Trust-first GTM and product focus for an early-stage assessment platform, leading to <span className=\"highlight-yellow\">adoption and revenue growth</span>.",
+    tags: ["Trust", "GTM", "Proctoring"],
+    context:
+      "Topin Tech was an early-stage assessment platform trying to figure out the right product direction and GTM. There was clear interest from prospects, but conversions were slow and inconsistent, making it hard to understand what would actually drive adoption and revenue.",
+    problem:
+      "Feature requests varied from customer to customer, and sales conversations often stalled midway. After spending time with users, it became clear that the real issue wasn't missing test types — it was a lack of confidence in the credibility of the assessments.",
+    constraints: [
+      "We were working with a small, early-stage team, so focus was critical.",
+      "Improving credibility was necessary to unlock sales.",
+      "GTM messaging didn't clearly communicate why the product could be trusted.",
+    ],
+    options: [
+      "Ship more test types quickly (surface-level, wouldn't fix trust)",
+      "Discount pricing to close deals (hurts positioning)",
+      "Lead with trust: double down on proctoring, credibility signals, and GTM anchored on integrity",
+    ],
+    decision:
+      "We decided to take a trust-first approach. Instead of expanding test types, we focused on strengthening proctoring, adding clear credibility signals, and repositioning GTM around assessment integrity before scaling features.",
+    execution: [
+      "I spoke with existing customers, active prospects, and evaluators to understand how they judged assessment platforms and where trust broke down.",
+      "These conversations consistently pointed to proctoring and authenticity as the main adoption blockers.",
+      "I shared these insights with sales, leadership, and engineering to realign the roadmap around trust as the primary growth lever.",
+      "Product efforts focused on improving proctoring and making credibility visible, while GTM messaging was updated to clearly highlight integrity and reliability.",
+    ],
+    outcomes: [
+      "<span className=\"highlight-yellow\">50+ new clients onboarded within 7 months</span>",
+      "<span className=\"highlight-yellow\">₹40+ Lakhs in revenue generated</span>",
+      "Built a strong foundation to later expand test types and scale GTM with confidence",
+    ],
+    learnings: [
+      "In assessment products, trust matters more than feature breadth.",
+      "User conversations are essential for shaping both roadmap and GTM.",
+      "Strong foundations make future features more valuable and easier to sell.",
+    ],
+  },
+  {
+    title:
+      "FirstJob (0→1): Productising a Manual Placement Workflow into a Scalable Hiring Platform",
+    summary:
+      "<span className=\"highlight-yellow\">0→1 MVP</span> that turned a manual placement process into a self-serve, automated flow to <span className=\"highlight-yellow\">validate demand and reduce ops load</span>.",
+    tags: ["0→1", "Automation", "Self-serve"],
+    context:
+      "The long-term goal was to build a central placement hub for fresher hiring, where students move through assessments, mock interviews, job applications, and company interviews in one place. At the time, the placements team was managing this entire journey manually, end to end.",
+    problem:
+      "As placement volumes increased, operational effort grew at the same pace. Shortlisting students, creating assessments, sending links, following up, tracking completion, and scheduling mock interviews were all done manually. This made the process slow, error-prone, and hard to scale.",
+    constraints: [
+      "There was no dedicated engineering or design bandwidth.",
+      "We needed to validate the model quickly with real users.",
+      "The solution had to work with the existing assessment platform.",
+      "Speed and learning were more important than polish.",
+    ],
+    options: [
+      "Keep manual ops (not scalable; high effort)",
+      "Add operations headcount (costly; still manual)",
+      "Productise the journey into a self-serve, automated flow using existing tools/APIs",
+    ],
+    decision:
+      "Instead of optimising the manual process, we decided to productise the placement journey. The goal was to build a single, on-demand, automated flow that could validate demand and engagement without adding new headcount.",
+    execution: [
+      "I mapped the ideal end-to-end flow: student login, resume upload, detail parsing, automatic assessment assignment, automated invites and reminders, completion tracking, and automatic progression to the mock interview stage.",
+      "We used existing assessment APIs and Supabase to manage users and state, with automation handling notifications and progression. AI-assisted development helped move quickly without getting blocked on resources.",
+      "The MVP was launched under firstjob.tech on Vercel, with a focus on flow correctness, instrumentation, and fast iteration rather than visual perfection.",
+    ],
+    outcomes: [
+      "<span className=\"highlight-yellow\">In the first month, the platform reached 8,000 students</span>.",
+      "<span className=\"highlight-yellow\">3,000 students attempted assessments, and 1,800 completed interviews</span>.",
+      "<span className=\"highlight-yellow\">Manual operational effort reduced significantly</span> as invites, reminders, and progression were automated. The data also helped validate real demand and engagement before making deeper investments.",
+    ],
+    learnings: [
+      "Productising manual workflows makes bottlenecks and constraints visible very quickly.",
+      "Automating reminders and stage progression delivered the largest operational lift.",
+      "With tight scope and clear intent, 0→1 execution is possible using existing tools.",
+      "Self-serve flows reduce ops load, but only work well when expectations and next steps are clearly set.",
+    ],
+  },
+];
+
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#case-studies", label: "Case Studies" },
+  { href: "#how-i-work", label: "How I Work" },
+  { href: "#tools", label: "Tools" },
+];
+
+const aboutParagraphs = [
+  "I come from a business background. I started with a BBA and early roles in customer-facing and sales teams, where I spent a lot of time <span className=\"highlight-yellow\">close to users and revenue</span>. That experience shaped how I look at problems — understanding intent, friction, and what actually influences outcomes.",
+  "I moved into product because I wanted to <span className=\"highlight-yellow\">own problems end to end</span>, not just results in isolation. As an Associate Product Manager, I'm comfortable working in ambiguity, aligning different stakeholders, and <span className=\"highlight-yellow\">using data to validate whether something is working before scaling it</span>.",
+  "Coming from a non-technical background, I've pushed myself to stay relevant by learning systems, tools, and GenAI workflows hands-on. <span className=\"highlight-yellow\">I've built and shipped real products using AI-assisted development</span>, owning product flows end to end while staying focused on clarity, trade-offs, and user impact.",
+  "I care deeply about understanding the problem and the \"why\" before jumping to solutions. For me, good products come from clear thinking, <span className=\"highlight-yellow\">close collaboration with engineers and designers</span>, and making progress in small, measurable steps.",
+];
+
+const howIWork = [
+  {
+    title: "Start with the real problem and the why",
+    detail:
+      "I slow down at the start: <span className=\"highlight-yellow\">mapping the journey, talking to users, and making the success criteria explicit</span>. If the why is weak, the solution rarely holds.",
+  },
+  {
+    title: "Work in the open with the team",
+    detail:
+      "<span className=\"highlight-yellow\">I involve engineers, designers, and stakeholders early</span>. Sharing scrappy ideas and tradeoffs upfront avoids surprises later and keeps decisions grounded in feasibility.",
+  },
+  {
+    title: "Prioritize by outcomes and constraints",
+    detail:
+      "I'm explicit about constraints, tradeoffs, and what we're choosing not to do. That clarity keeps us focused on <span className=\"highlight-yellow\">what will move metrics rather than what simply looks impressive</span>.",
+  },
+  {
+    title: "Measure simply and adjust fast",
+    detail:
+      "I prefer a few signals over dashboards full of noise. <span className=\"highlight-yellow\">Ship, watch the metrics that matter, talk to users again, and adjust without ego</span>.",
+  },
+  {
+    title: "Use automation and AI to remove toil",
+    detail:
+      "Automation is only useful if it frees the team to solve harder problems. <span className=\"highlight-yellow\">I apply AI and tooling where it reduces repetitive work</span>, not as a gimmick.",
+  },
+];
+
+const toolGroups = [
+  {
+    title: "Product & discovery",
+    items: [
+      { name: "Notion", detail: "PRDs, decision docs, async comms", logo: "/logos/notion.png" },
+      { name: "Miro", detail: "Journeys, workshops, facilitation", logo: "/logos/miro.png" },
+      { name: "Figma", detail: "User flows, quick wires, specs", logo: "/logos/figma.png" },
+    ],
+  },
+  {
+    title: "Delivery & tracking",
+    items: [
+      { name: "ClickUp / Jira", detail: "Roadmaps, execution clarity", logo: "/logos/clickup.svg" },
+      { name: "Weekly docs", detail: "Alignment, risks, next steps" },
+    ],
+  },
+  {
+    title: "Analytics & instrumentation",
+    items: [
+      { name: "Mixpanel", detail: "Funnels, cohorts, retention", logo: "/logos/mixpanel.png" },
+      { name: "Google Analytics", detail: "Acquisition and behavior checks", logo: "/logos/ga.png" },
+    ],
+  },
+  {
+    title: "Automation & AI",
+    items: [
+      { name: "Make.com", detail: "Lifecycle and ops automation", logo: "/logos/make.png" },
+      { name: "HubSpot", detail: "CRM + triggers", logo: "/logos/hubspot.png" },
+      { name: "OpenAI", detail: "Structured outputs, summarization", logo: "/logos/openai.png" },
+      { name: "Cursor", detail: "Faster build & iteration", logo: "/logos/cursor.png" },
+    ],
+  },
+  {
+    title: "Technical support",
+    items: [
+      { name: "Supabase", detail: "Auth + data for prototypes", logo: "/logos/supabase.png" },
+      { name: "Retool", detail: "Internal surfaces", logo: "/logos/retool.png" },
+      { name: "Git + Vercel", detail: "Shipping and review", logo: "/vercel.svg" },
+      { name: "Postman", detail: "APIs & testing", logo: "/logos/postman.png" },
+    ],
+  },
+];
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const sections = navLinks.map((link) => link.href.substring(1)); // Remove # from href
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Get all intersecting entries and find the one with highest intersection ratio
+      const intersectingEntries = entries.filter((entry) => entry.isIntersecting);
+      
+      if (intersectingEntries.length > 0) {
+        // Sort by intersection ratio (highest first), then by position
+        intersectingEntries.sort((a, b) => {
+          if (b.intersectionRatio !== a.intersectionRatio) {
+            return b.intersectionRatio - a.intersectionRatio;
+          }
+          return a.boundingClientRect.top - b.boundingClientRect.top;
+        });
+        
+        setActiveSection(`#${intersectingEntries[0].target.id}`);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Wait for DOM to be ready
+    const timeoutId = setTimeout(() => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.observe(element);
+        }
+      });
+
+      // Set initial active section
+      const updateActiveSection = () => {
+        let activeId = sections[0];
+        let minDistance = Infinity;
+
+        sections.forEach((sectionId) => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const distance = Math.abs(rect.top - window.innerHeight * 0.25);
+            if (distance < minDistance && rect.top < window.innerHeight * 0.75) {
+              minDistance = distance;
+              activeId = sectionId;
+            }
+          }
+        });
+
+        setActiveSection(`#${activeId}`);
+      };
+
+      updateActiveSection();
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 py-14">
+        <div className="grid gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16">
+          <aside className="lg:sticky lg:top-6 lg:h-[calc(100vh-24px)]">
+            <div className="flex h-full items-start pt-4 lg:pt-6">
+              <div className="flex flex-col gap-12">
+                <div className="space-y-3">
+                  <p className="text-2xl font-semibold leading-snug text-[var(--foreground)]">Hello, I'm Rahul</p>
+                  <p className="text-sm font-medium text-muted leading-snug">Associate Product Manager</p>
+                </div>
+
+                <nav aria-label="Page sections" className="text-sm text-muted">
+                  <ul className="divide-y divide-white/10 border-y border-white/10 space-y-0">
+                    {navLinks.map((link) => {
+                      const isActive = activeSection === link.href;
+                      return (
+                        <li key={link.href} className="first:pt-1 last:pb-1">
+                          <a
+                            href={link.href}
+                            className={`hover-luminous flex items-center justify-between py-3 transition-colors cursor-pointer ${
+                              isActive
+                                ? "text-[var(--foreground)] active-luminous"
+                                : "text-muted hover:text-[var(--foreground)]"
+                            }`}
+                          >
+                            <span className="text-sm font-medium">{link.label}</span>
+                            <span aria-hidden className={isActive ? "text-[var(--foreground)]" : "text-muted"}>
+                              —
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Contact</p>
+                  <div className="space-y-2 text-sm leading-relaxed text-muted">
+                    <p>I'm open to APM / PM-I roles.</p>
+                    <p>
+                      Email:{" "}
+                      <a className="text-[var(--foreground)] underline decoration-gray-500 underline-offset-2 hover:text-[var(--accent)] transition-colors" href="mailto:yrahul221199@gmail.com">
+                        yrahul221199@gmail.com
+                      </a>
+                    </p>
+                    <p>
+                      LinkedIn:{" "}
+                      <a
+                        className="text-[var(--foreground)] underline decoration-gray-500 underline-offset-2 hover:text-[var(--accent)] transition-colors"
+                        href="https://linkedin.com/in/rahul-22-patil"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        linkedin.com/in/rahul-22-patil
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div className="space-y-16 lg:max-w-3xl text-base leading-relaxed text-muted">
+            <section id="about" className="scroll-mt-24 space-y-3 animate-fade-up-soft">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">About</p>
+              <div className="space-y-5 max-w-2xl text-[var(--foreground)] rounded-lg border border-white/12 p-6 bg-[#222222] transition-colors hover:bg-[#252525]">
+                {aboutParagraphs.map((paragraph, index) => (
+                  <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                ))}
+              </div>
+            </section>
+
+            <CaseStudiesList studies={caseStudies} />
+
+            <section id="how-i-work" className="scroll-mt-24 space-y-8 animate-fade-up-soft">
+              <header className="space-y-2 border-b border-white/10 pb-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                  How I Work
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[var(--foreground)]">
+                  I prefer clear systems over flashy solutions
+                </h2>
+                <p className="text-base text-muted max-w-2xl">
+                  First-person notes on how I approach problems, teams, and decisions.
+                </p>
+              </header>
+              <div className="space-y-5 rounded-lg border border-white/12 p-6 bg-[#222222] transition-colors hover:bg-[#252525]">
+                {howIWork.map((item) => (
+                  <div
+                    key={item.title}
+                    className="space-y-2 border-b border-white/10 pb-5 last:border-none last:pb-0"
+                  >
+                    <p className="text-lg font-semibold text-[var(--foreground)]">{item.title}</p>
+                    <p className="text-base leading-relaxed text-[#cfd2dc] max-w-2xl" dangerouslySetInnerHTML={{ __html: item.detail }} />
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section id="tools" className="scroll-mt-24 space-y-6 animate-fade-up-soft">
+              <header className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Tools</p>
+                <h2 className="text-2xl font-semibold leading-tight text-[var(--foreground)]">What I use and why</h2>
+                <p className="text-base text-muted max-w-2xl">Context, with familiar tools and logos.</p>
+              </header>
+              <div className="space-y-6">
+                {toolGroups.map((group) => (
+                  <div key={group.title} className="space-y-3">
+                    <p className="text-lg font-semibold text-[var(--foreground)]">{group.title}</p>
+                    <div className="space-y-3">
+                      {group.items.map((item) => (
+                        <div
+                          key={item.name}
+                          className="hover-luminous flex items-center gap-3 rounded-xl border border-white/10 bg-[#222222] px-3 py-3 transition-all duration-200 hover:border-white/16 hover:bg-[#282828]"
+                        >
+                          {item.logo ? (
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a1a1a] border border-white/10">
+                              <Image src={item.logo} alt={`${item.name} logo`} width={32} height={32} className="object-contain h-8 w-8" />
+                            </div>
+                          ) : (
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(255,255,255,0.06)] text-[11px] font-semibold text-muted">
+                              —
+                            </div>
+                          )}
+                          <div className="flex flex-col">
+                            <span className="text-base font-semibold text-[var(--foreground)] leading-snug">{item.name}</span>
+                            <span className="text-base text-muted leading-relaxed">{item.detail}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

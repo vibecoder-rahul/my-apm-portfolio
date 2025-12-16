@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1a1a1a;
+  --foreground: #f5f7fb;
+  --muted: #adb1bc;
+  --accent: #7c7cff;
+  --border: rgba(255, 255, 255, 0.08);
+  --card-bg: #222222;
+  --card-bg-hover: #282828;
+  --card-border: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -12,15 +18,244 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  cursor: default;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+svg {
+  filter: grayscale(0%);
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .text-muted {
+    color: var(--muted);
+  }
+}
+
+@keyframes fade-up-soft {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up-soft {
+    animation: fade-up-soft 200ms ease-out forwards;
+  }
+
+  .hover-luminous {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    isolation: isolate;
+  }
+
+  .hover-luminous::after {
+    content: "";
+    position: absolute;
+    inset: -24px;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04), transparent 70%);
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+    z-index: 0;
+  }
+
+  .hover-luminous:hover::after,
+  .hover-luminous:focus-visible::after {
+    opacity: 0.4;
+  }
+
+  .active-luminous::after {
+    opacity: 0.5 !important;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.06), transparent 70%);
+  }
+
+  .hover-luminous-inline {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .hover-luminous-inline::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.02), transparent 60%);
+    opacity: 0;
+    transition: opacity 180ms ease-out;
+    z-index: -1;
+  }
+
+  .hover-luminous-inline:hover::after,
+  .hover-luminous-inline:focus-visible::after {
+    opacity: 0.25;
+  }
+}
+
+a {
+  position: relative;
+  cursor: pointer;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.02), transparent 60%);
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+  z-index: -1;
+}
+
+a:hover::after,
+a:focus-visible::after {
+  opacity: 0.25;
+}
+
+input,
+textarea {
+  cursor: text;
+}
+
+button {
+  cursor: pointer;
+}
+
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    600px circle at var(--lx, 50%) var(--ly, 50%),
+    rgba(255, 255, 255, 0.04),
+    transparent 40%
+  );
+  transition: opacity 160ms ease-out;
+  opacity: 1;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 25%, white);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: #ffffff;
+  }
+
+  .pill {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: #ffffff;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+}
+
+
+@layer utilities {
+  .animate-fade-in { animation: fade-in 220ms ease-out forwards; }
+  .animate-fade-up { animation: fade-up 220ms ease-out forwards; }
+  .animate-fade-up-delayed { animation: fade-up 220ms ease-out forwards; animation-delay: 120ms; }
+  .animate-fade-up-late { animation: fade-up 220ms ease-out forwards; animation-delay: 220ms; }
+
+  .type-hello {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 3px solid var(--foreground);
+    animation: typing-hello 1800ms steps(6, end) forwards, caret 900ms step-end infinite;
+  }
+
+  .type-hello.done {
+    border-right-color: transparent;
+    animation: none;
+  }
+
+  .type-name {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 2px solid var(--foreground);
+    animation: typing-name 2000ms steps(18, end) 400ms forwards, caret 900ms step-end infinite 400ms;
+  }
+
+  .type-name.done {
+    border-right-color: transparent;
+    animation: none;
+  }
+
+  .type-role {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 2px solid var(--foreground);
+    animation: typing-role 2000ms steps(28, end) 900ms forwards, caret 900ms step-end infinite 900ms;
+  }
+
+  .type-role.done {
+    border-right-color: transparent;
+    animation: none;
+  }
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--foreground); }
+}
+
+@keyframes typing-hello {
+  from { width: 0; }
+  to { width: 6ch; }
+}
+
+@keyframes typing-name {
+  from { width: 0; }
+  to { width: 18ch; }
+}
+
+@keyframes typing-role {
+  from { width: 0; }
+  to { width: 28ch; }
+}
+
+.highlight-yellow {
+  text-decoration: underline;
+  text-decoration-color: #fbbf24;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
