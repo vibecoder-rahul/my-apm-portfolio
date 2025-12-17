@@ -40,13 +40,15 @@ export default function CaseStudiesList({ studies }: { studies: Study[] }) {
             <article
               key={study.title}
               onClick={() => setSelected(study)}
-              className="hover-luminous rounded-xl border border-white/10 bg-[#222222] p-5 transition-all duration-200 hover:border-white/16 hover:bg-[#282828] cursor-pointer group"
+              className="hover-luminous rounded-xl border border-white/10 bg-[#222222] p-5 sm:p-6 transition-all duration-200 hover:border-white/16 hover:bg-[#282828] cursor-pointer group"
             >
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="space-y-2 flex-1">
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">Case {indexLabel}</p>
-                  <h3 className="text-lg font-semibold text-[var(--foreground)] leading-tight group-hover:text-[var(--accent)] transition-colors">{study.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed line-clamp-3">{study.summary}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-[var(--foreground)] leading-tight group-hover:text-[var(--accent)] transition-colors">
+                    {study.title}
+                  </h3>
+                  <p className="text-sm text-muted leading-relaxed line-clamp-4 sm:line-clamp-3">{study.summary}</p>
                   {study.tags && study.tags.length > 0 ? (
                     <div className="flex flex-wrap gap-2 text-xs font-medium text-[var(--foreground)]">
                       {study.tags.map((tag) => (
@@ -57,7 +59,7 @@ export default function CaseStudiesList({ studies }: { studies: Study[] }) {
                     </div>
                   ) : null}
                 </div>
-                <div className="flex items-center text-muted group-hover:text-[var(--accent)] transition-colors">
+                <div className="flex items-center text-muted group-hover:text-[var(--accent)] transition-colors sm:self-start">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -78,34 +80,36 @@ export default function CaseStudiesList({ studies }: { studies: Study[] }) {
 
       {selected ? (
         <div
-          className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 px-4"
+          className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 px-4 py-6 sm:py-10"
           role="dialog"
           aria-modal="true"
           aria-label={selected.title}
           onClick={() => setSelected(null)}
         >
           <div
-            className="w-full max-w-3xl rounded-2xl bg-[#222222] p-6 max-h-[90vh] overflow-y-auto border border-white/12 shadow-2xl"
+            className="w-full max-w-3xl rounded-2xl bg-[#222222] p-5 sm:p-6 max-h-[88vh] overflow-y-auto border border-white/12 shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-1">
-                <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
-                  Case {String(studies.indexOf(selected) + 1).padStart(2, "0")}
-                </p>
-                <h3 className="text-xl font-semibold text-[var(--foreground)]">{selected.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">{selected.summary}</p>
+            <div className="sticky top-0 z-10 bg-[#222222] pb-4 border-b border-white/10">
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
+                    Case {String(studies.indexOf(selected) + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-[var(--foreground)]">{selected.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{selected.summary}</p>
+                </div>
+                <button
+                  onClick={() => setSelected(null)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-[#2b2b2b] text-muted hover:text-[var(--foreground)] hover:border-white/25 transition-colors"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
               </div>
-              <button
-                onClick={() => setSelected(null)}
-                className="text-muted hover:text-[var(--foreground)] text-sm font-semibold"
-                aria-label="Close"
-              >
-                ✕
-              </button>
             </div>
 
-            <div className="mt-6 space-y-6 text-sm leading-7 text-muted">
+            <div className="mt-4 sm:mt-6 space-y-6 text-sm sm:text-base leading-7 text-muted">
               <CaseSection title="Context" body={[selected.context]} />
               <CaseSection title="Problem" body={[selected.problem]} />
               <CaseSection title="Constraints" list={selected.constraints} />

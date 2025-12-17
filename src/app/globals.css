@@ -43,6 +43,14 @@ svg {
   .text-muted {
     color: var(--muted);
   }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes fade-up-soft {

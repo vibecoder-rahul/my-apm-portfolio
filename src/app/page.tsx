@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import CaseStudiesList from "../components/CaseStudiesList";
 
@@ -215,14 +215,42 @@ const toolGroups = [
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("");
+  const pillRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  useEffect(() => {
+    if (!activeSection) return;
+    const key = activeSection.replace("#", "");
+    const node = pillRefs.current[key];
+    if (node) {
+      node.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const sections = navLinks.map((link) => link.href.substring(1)); // Remove # from href
 
     const observerOptions = {
       root: null,
-      rootMargin: "-25% 0px -55% 0px",
-      threshold: 0,
+      rootMargin: "-50% 0px -45% 0px",
+      threshold: 0.05,
+    };
+
+    const updateActiveSection = () => {
+      let activeId = sections[0];
+      let minDistance = Infinity;
+
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const distance = Math.abs(rect.top - window.innerHeight * 0.35);
+          if (distance < minDistance && rect.top < window.innerHeight * 0.9) {
+            minDistance = distance;
+            activeId = sectionId;
+          }
+        }
+      });
+
+      setActiveSection(`#${activeId}`);
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -254,30 +282,18 @@ export default function Home() {
       });
 
       // Set initial active section
-      const updateActiveSection = () => {
-        let activeId = sections[0];
-        let minDistance = Infinity;
-
-        sections.forEach((sectionId) => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            const distance = Math.abs(rect.top - window.innerHeight * 0.25);
-            if (distance < minDistance && rect.top < window.innerHeight * 0.75) {
-              minDistance = distance;
-              activeId = sectionId;
-            }
-          }
-        });
-
-        setActiveSection(`#${activeId}`);
-      };
-
       updateActiveSection();
     }, 100);
 
+    const onScroll = () => {
+      updateActiveSection();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
       clearTimeout(timeoutId);
+      window.removeEventListener("scroll", onScroll);
       sections.forEach((sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -289,7 +305,31 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 py-14">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-14 pb-14">
+        <div className="lg:hidden sticky top-0 z-20 mb-6 bg-[var(--background)]/92 backdrop-blur px-1 py-3 border-b border-white/10">
+          <div className="flex gap-2 overflow-x-auto no-scrollbar px-4">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <a
+                  key={link.href}
+                  ref={(node) => {
+                    pillRefs.current[link.href.substring(1)] = node;
+                  }}
+                  href={link.href}
+                  className={`whitespace-nowrap rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "border-white/30 bg-white/5 text-[var(--foreground)]"
+                      : "border-white/10 bg-white/0 text-muted hover:border-white/20 hover:text-[var(--foreground)]"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16">
           <aside className="lg:sticky lg:top-6 lg:h-[calc(100vh-24px)]">
             <div className="flex h-full items-start pt-4 lg:pt-6">
@@ -299,7 +339,7 @@ export default function Home() {
                   <p className="text-sm font-medium text-muted leading-snug">Associate Product Manager</p>
                 </div>
 
-                <nav aria-label="Page sections" className="text-sm text-muted">
+                <nav aria-label="Page sections" className="text-sm text-muted hidden lg:block">
                   <ul className="divide-y divide-white/10 border-y border-white/10 space-y-0">
                     {navLinks.map((link) => {
                       const isActive = activeSection === link.href;
