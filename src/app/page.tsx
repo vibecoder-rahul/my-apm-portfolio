@@ -6,14 +6,15 @@ import CaseStudiesList from "../components/CaseStudiesList";
 
 const caseStudies = [
   {
-    title: "Identifying and Solving Interview Readiness Drop-Offs in the Placement Funnel",
+    title:
+      "Identifying and Solving Interview Readiness Drop-Offs in the Placement Funnel",
     summary:
       "Recovered placement conversions by removing scheduling friction in mock interview prep with an on-demand flow.",
     tags: ["Interview readiness", "AI mocks", "Conversion"],
     context:
-      "Students moved through assessments, followed by mock interviews with Success Coaches, and then final company interviews. Mock interviews were scheduled through Calendly and used company- and role-specific context with structured feedback. <span className=\"highlight-yellow\">At peak, ~1,200–1,500 students per month were reaching the mock interview stage</span>.",
+      'Students moved through assessments, followed by mock interviews with Success Coaches, and then final company interviews. Mock interviews were scheduled through Calendly and used company- and role-specific context with structured feedback. <span className="highlight-yellow">At peak, ~1,200–1,500 students per month were reaching the mock interview stage</span>.',
     problem:
-      "Over two months, <span className=\"highlight-yellow\">placement numbers declined</span> even though assessment pass rates and interview demand remained stable. Funnel analysis showed a clear drop during mock interview scheduling and attendance, which later reflected in weaker final interview performance. <span className=\"highlight-yellow\">~38% of eligible students did not schedule a mock</span>. <span className=\"highlight-yellow\">~27% of scheduled mocks were no-shows</span>.",
+      'Over two months, <span className="highlight-yellow">placement numbers declined</span> even though assessment pass rates and interview demand remained stable. Funnel analysis showed a clear drop during mock interview scheduling and attendance, which later reflected in weaker final interview performance. <span className="highlight-yellow">~38% of eligible students did not schedule a mock</span>. <span className="highlight-yellow">~27% of scheduled mocks were no-shows</span>.',
     constraints: [
       "Maintain placement outcomes without increasing Success Coach headcount",
       "Keep preparation structured and role-specific, not generic",
@@ -34,12 +35,12 @@ const caseStudies = [
       "Integrated the flow into the placement product and iterated entry points and copy to emphasize flexibility",
     ],
     outcomes: [
-      "<span className=\"highlight-yellow\">Strong adoption of the on-demand mock flow after launch</span>",
+      '<span className="highlight-yellow">Strong adoption of the on-demand mock flow after launch</span>',
       "Improved interview preparedness through consistent, unbiased feedback",
-      "<span className=\"highlight-yellow\">Placement conversions recovered after the dip</span>",
+      '<span className="highlight-yellow">Placement conversions recovered after the dip</span>',
       "Positive feedback from students on flexibility and immediacy",
-      "<span className=\"highlight-yellow\">Final interview shortlisting rate improved by ~15–18% compared to the previous two months</span>",
-      "<span className=\"highlight-yellow\">Mock completion rate increased from ~62% (scheduled) to ~88% (on-demand)</span>",
+      '<span className="highlight-yellow">Final interview shortlisting rate improved by ~15–18% compared to the previous two months</span>',
+      '<span className="highlight-yellow">Mock completion rate increased from ~62% (scheduled) to ~88% (on-demand)</span>',
     ],
     learnings: [
       "Time-based friction can quietly break high-intent funnels",
@@ -49,9 +50,10 @@ const caseStudies = [
     ],
   },
   {
-    title: "Topin Tech: Building Trust First to Unlock Growth in an Assessment Platform",
+    title:
+      "Topin Tech: Building Trust First to Unlock Growth in an Assessment Platform",
     summary:
-      "Trust-first GTM and product focus for an early-stage assessment platform, leading to <span className=\"highlight-yellow\">adoption and revenue growth</span>.",
+      'Trust-first GTM and product focus for an early-stage assessment platform, leading to <span className="highlight-yellow">adoption and revenue growth</span>.',
     tags: ["Trust", "GTM", "Proctoring"],
     context:
       "Topin Tech was an early-stage assessment platform trying to figure out the right product direction and GTM. There was clear interest from prospects, but conversions were slow and inconsistent, making it hard to understand what would actually drive adoption and revenue.",
@@ -76,8 +78,8 @@ const caseStudies = [
       "Product efforts focused on improving proctoring and making credibility visible, while GTM messaging was updated to clearly highlight integrity and reliability.",
     ],
     outcomes: [
-      "<span className=\"highlight-yellow\">50+ new clients onboarded within 7 months</span>",
-      "<span className=\"highlight-yellow\">₹40+ Lakhs in revenue generated</span>",
+      '<span className="highlight-yellow">50+ new clients onboarded within 7 months</span>',
+      '<span className="highlight-yellow">₹40+ Lakhs in revenue generated</span>',
       "Built a strong foundation to later expand test types and scale GTM with confidence",
     ],
     learnings: [
@@ -90,7 +92,7 @@ const caseStudies = [
     title:
       "FirstJob (0→1): Productising a Manual Placement Workflow into a Scalable Hiring Platform",
     summary:
-      "<span className=\"highlight-yellow\">0→1 MVP</span> that turned a manual placement process into a self-serve, automated flow to <span className=\"highlight-yellow\">validate demand and reduce ops load</span>.",
+      '<span className="highlight-yellow">0→1 MVP</span> that turned a manual placement process into a self-serve, automated flow to <span className="highlight-yellow">validate demand and reduce ops load</span>.',
     tags: ["0→1", "Automation", "Self-serve"],
     context:
       "The long-term goal was to build a central placement hub for fresher hiring, where students move through assessments, mock interviews, job applications, and company interviews in one place. At the time, the placements team was managing this entire journey manually, end to end.",
@@ -115,9 +117,9 @@ const caseStudies = [
       "The MVP was launched under firstjob.tech on Vercel, with a focus on flow correctness, instrumentation, and fast iteration rather than visual perfection.",
     ],
     outcomes: [
-      "<span className=\"highlight-yellow\">In the first month, the platform reached 8,000 students</span>.",
-      "<span className=\"highlight-yellow\">3,000 students attempted assessments, and 1,800 completed interviews</span>.",
-      "<span className=\"highlight-yellow\">Manual operational effort reduced significantly</span> as invites, reminders, and progression were automated. The data also helped validate real demand and engagement before making deeper investments.",
+      '<span className="highlight-yellow">In the first month, the platform reached 8,000 students</span>.',
+      '<span className="highlight-yellow">3,000 students attempted assessments, and 1,800 completed interviews</span>.',
+      '<span className="highlight-yellow">Manual operational effort reduced significantly</span> as invites, reminders, and progression were automated. The data also helped validate real demand and engagement before making deeper investments.',
     ],
     learnings: [
       "Productising manual workflows makes bottlenecks and constraints visible very quickly.",
@@ -136,22 +138,22 @@ const navLinks = [
 ];
 
 const aboutParagraphs = [
-  "I come from a business background. I started with a BBA and early roles in customer-facing and sales teams, where I spent a lot of time <span className=\"highlight-yellow\">close to users and revenue</span>. That experience shaped how I look at problems — understanding intent, friction, and what actually influences outcomes.",
-  "I moved into product because I wanted to <span className=\"highlight-yellow\">own problems end to end</span>, not just results in isolation. As an Associate Product Manager, I'm comfortable working in ambiguity, aligning different stakeholders, and <span className=\"highlight-yellow\">using data to validate whether something is working before scaling it</span>.",
+  'I come from a business background. I started with a BBA and early roles in customer-facing and sales teams, where I spent a lot of time <span className="highlight-yellow">close to users and revenue</span>. That experience shaped how I look at problems — understanding intent, friction, and what actually influences outcomes.',
+  'I moved into product because I wanted to <span className="highlight-yellow">own problems end to end</span>, not just results in isolation. As an Associate Product Manager, I\'m comfortable working in ambiguity, aligning different stakeholders, and <span className="highlight-yellow">using data to validate whether something is working before scaling it</span>.',
   "Coming from a non-technical background, I've pushed myself to stay relevant by learning systems, tools, and GenAI workflows hands-on. <span className=\"highlight-yellow\">I've built and shipped real products using AI-assisted development</span>, owning product flows end to end while staying focused on clarity, trade-offs, and user impact.",
-  "I care deeply about understanding the problem and the \"why\" before jumping to solutions. For me, good products come from clear thinking, <span className=\"highlight-yellow\">close collaboration with engineers and designers</span>, and making progress in small, measurable steps.",
+  'I care deeply about understanding the problem and the "why" before jumping to solutions. For me, good products come from clear thinking, <span className="highlight-yellow">close collaboration with engineers and designers</span>, and making progress in small, measurable steps.',
 ];
 
 const howIWork = [
   {
     title: "Start with the real problem and the why",
     detail:
-      "I slow down at the start: <span className=\"highlight-yellow\">mapping the journey, talking to users, and making the success criteria explicit</span>. If the why is weak, the solution rarely holds.",
+      'I slow down at the start: <span className="highlight-yellow">mapping the journey, talking to users, and making the success criteria explicit</span>. If the why is weak, the solution rarely holds.',
   },
   {
     title: "Work in the open with the team",
     detail:
-      "<span className=\"highlight-yellow\">I involve engineers, designers, and stakeholders early</span>. Sharing scrappy ideas and tradeoffs upfront avoids surprises later and keeps decisions grounded in feasibility.",
+      '<span className="highlight-yellow">I involve engineers, designers, and stakeholders early</span>. Sharing scrappy ideas and tradeoffs upfront avoids surprises later and keeps decisions grounded in feasibility.',
   },
   {
     title: "Prioritize by outcomes and constraints",
@@ -161,12 +163,12 @@ const howIWork = [
   {
     title: "Measure simply and adjust fast",
     detail:
-      "I prefer a few signals over dashboards full of noise. <span className=\"highlight-yellow\">Ship, watch the metrics that matter, talk to users again, and adjust without ego</span>.",
+      'I prefer a few signals over dashboards full of noise. <span className="highlight-yellow">Ship, watch the metrics that matter, talk to users again, and adjust without ego</span>.',
   },
   {
     title: "Use automation and AI to remove toil",
     detail:
-      "Automation is only useful if it frees the team to solve harder problems. <span className=\"highlight-yellow\">I apply AI and tooling where it reduces repetitive work</span>, not as a gimmick.",
+      'Automation is only useful if it frees the team to solve harder problems. <span className="highlight-yellow">I apply AI and tooling where it reduces repetitive work</span>, not as a gimmick.',
   },
 ];
 
@@ -174,40 +176,88 @@ const toolGroups = [
   {
     title: "Product & discovery",
     items: [
-      { name: "Notion", detail: "PRDs, decision docs, async comms", logo: "/logos/notion.png" },
-      { name: "Miro", detail: "Journeys, workshops, facilitation", logo: "/logos/miro.png" },
-      { name: "Figma", detail: "User flows, quick wires, specs", logo: "/logos/figma.png" },
+      {
+        name: "Notion",
+        detail: "PRDs, decision docs, async comms",
+        logo: "/logos/notion.png",
+      },
+      {
+        name: "Miro",
+        detail: "Journeys, workshops, facilitation",
+        logo: "/logos/miro.png",
+      },
+      {
+        name: "Figma",
+        detail: "User flows, quick wires, specs",
+        logo: "/logos/figma.png",
+      },
     ],
   },
   {
     title: "Delivery & tracking",
     items: [
-      { name: "ClickUp / Jira", detail: "Roadmaps, execution clarity", logo: "/logos/clickup.svg" },
+      {
+        name: "ClickUp / Jira",
+        detail: "Roadmaps, execution clarity",
+        logo: "/logos/clickup.svg",
+      },
       { name: "Weekly docs", detail: "Alignment, risks, next steps" },
     ],
   },
   {
     title: "Analytics & instrumentation",
     items: [
-      { name: "Mixpanel", detail: "Funnels, cohorts, retention", logo: "/logos/mixpanel.png" },
-      { name: "Google Analytics", detail: "Acquisition and behavior checks", logo: "/logos/ga.png" },
+      {
+        name: "Mixpanel",
+        detail: "Funnels, cohorts, retention",
+        logo: "/logos/mixpanel.png",
+      },
+      {
+        name: "Google Analytics",
+        detail: "Acquisition and behavior checks",
+        logo: "/logos/ga.png",
+      },
     ],
   },
   {
     title: "Automation & AI",
     items: [
-      { name: "Make.com", detail: "Lifecycle and ops automation", logo: "/logos/make.png" },
+      {
+        name: "Make.com",
+        detail: "Lifecycle and ops automation",
+        logo: "/logos/make.png",
+      },
       { name: "HubSpot", detail: "CRM + triggers", logo: "/logos/hubspot.png" },
-      { name: "OpenAI", detail: "Structured outputs, summarization", logo: "/logos/openai.png" },
-      { name: "Cursor", detail: "Faster build & iteration", logo: "/logos/cursor.png" },
+      {
+        name: "OpenAI",
+        detail: "Structured outputs, summarization",
+        logo: "/logos/openai.png",
+      },
+      {
+        name: "Cursor",
+        detail: "Faster build & iteration",
+        logo: "/logos/cursor.png",
+      },
     ],
   },
   {
     title: "Technical support",
     items: [
-      { name: "Supabase", detail: "Auth + data for prototypes", logo: "/logos/supabase.png" },
-      { name: "Retool", detail: "Internal surfaces", logo: "/logos/retool.png" },
-      { name: "Git + Vercel", detail: "Shipping and review", logo: "/vercel.svg" },
+      {
+        name: "Supabase",
+        detail: "Auth + data for prototypes",
+        logo: "/logos/supabase.png",
+      },
+      {
+        name: "Retool",
+        detail: "Internal surfaces",
+        logo: "/logos/retool.png",
+      },
+      {
+        name: "Git + Vercel",
+        detail: "Shipping and review",
+        logo: "/vercel.svg",
+      },
       { name: "Postman", detail: "APIs & testing", logo: "/logos/postman.png" },
     ],
   },
@@ -221,7 +271,11 @@ export default function Home() {
     const key = activeSection.replace("#", "");
     const node = pillRefs.current[key];
     if (node) {
-      node.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      node.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
     }
   }, [activeSection]);
 
@@ -255,8 +309,10 @@ export default function Home() {
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       // Get all intersecting entries and find the one with highest intersection ratio
-      const intersectingEntries = entries.filter((entry) => entry.isIntersecting);
-      
+      const intersectingEntries = entries.filter(
+        (entry) => entry.isIntersecting,
+      );
+
       if (intersectingEntries.length > 0) {
         // Sort by intersection ratio (highest first), then by position
         intersectingEntries.sort((a, b) => {
@@ -265,12 +321,15 @@ export default function Home() {
           }
           return a.boundingClientRect.top - b.boundingClientRect.top;
         });
-        
+
         setActiveSection(`#${intersectingEntries[0].target.id}`);
       }
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
 
     // Wait for DOM to be ready
     const timeoutId = setTimeout(() => {
@@ -305,7 +364,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-14 pb-14">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-14 pb-14">
         <div className="lg:hidden sticky top-0 z-20 mb-6 bg-[var(--background)]/92 backdrop-blur px-1 py-3 border-b border-white/10">
           <div className="flex gap-2 overflow-x-auto no-scrollbar px-4">
             {navLinks.map((link) => {
@@ -332,30 +391,71 @@ export default function Home() {
 
         <div className="grid gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16">
           <aside className="lg:sticky lg:top-6 lg:h-[calc(100vh-24px)]">
-            <div className="flex h-full items-start pt-4 lg:pt-6">
+            <div className="flex h-full items-start pt-0">
               <div className="flex flex-col gap-12">
                 <div className="space-y-3">
-                  <p className="text-2xl font-semibold leading-snug text-[var(--foreground)]">Hello, I'm Rahul</p>
-                  <p className="text-sm font-medium text-muted leading-snug">Associate Product Manager</p>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
+                      aria-hidden
+                    />
+                    <span className="text-[12px] font-medium text-white/65 tracking-[0.14em]">
+                      AVAILABLE FOR OPPORTUNITIES
+                    </span>
+                  </div>
+                  <p className="text-[36px] font-semibold leading-[1.15] text-[var(--foreground)]">
+                    Hello, I'm Rahul
+                  </p>
+                  <p className="text-[18px] font-medium text-muted leading-snug">
+                    Associate Product Manager
+                  </p>
                 </div>
 
-                <nav aria-label="Page sections" className="text-sm text-muted hidden lg:block">
-                  <ul className="divide-y divide-white/10 border-y border-white/10 space-y-0">
-                    {navLinks.map((link) => {
+                <nav
+                  aria-label="Page sections"
+                  className="text-sm text-muted hidden lg:block"
+                >
+                  <ul className="space-y-0">
+                    {navLinks.map((link, idx) => {
                       const isActive = activeSection === link.href;
+                      const number = String(idx + 1).padStart(2, "0");
                       return (
-                        <li key={link.href} className="first:pt-1 last:pb-1">
+                        <li key={link.href}>
                           <a
                             href={link.href}
-                            className={`hover-luminous flex items-center justify-between py-3 transition-colors cursor-pointer ${
+                            className={`hover-luminous group flex items-center gap-6 py-5 transition-colors cursor-pointer ${
                               isActive
                                 ? "text-[var(--foreground)] active-luminous"
                                 : "text-muted hover:text-[var(--foreground)]"
                             }`}
                           >
-                            <span className="text-sm font-medium">{link.label}</span>
-                            <span aria-hidden className={isActive ? "text-[var(--foreground)]" : "text-muted"}>
-                              —
+                            <span
+                              className={`w-8 text-left text-sm tracking-wide tabular-nums ${
+                                isActive
+                                  ? "text-[var(--foreground)]"
+                                  : "text-white/45 group-hover:text-white/70"
+                              }`}
+                            >
+                              {number}
+                            </span>
+
+                            <span
+                              aria-hidden
+                              className={`h-px w-16 ${
+                                isActive
+                                  ? "bg-[var(--foreground)]/80"
+                                  : "bg-white/20 group-hover:bg-white/35"
+                              }`}
+                            />
+
+                            <span
+                              className={`text-base font-medium ${
+                                isActive
+                                  ? "text-[var(--foreground)]"
+                                  : "text-white/55 group-hover:text-[var(--foreground)]"
+                              }`}
+                            >
+                              {link.label}
                             </span>
                           </a>
                         </li>
@@ -365,12 +465,17 @@ export default function Home() {
                 </nav>
 
                 <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Contact</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                    Contact
+                  </p>
                   <div className="space-y-2 text-sm leading-relaxed text-muted">
                     <p>I'm open to APM / PM-I roles.</p>
                     <p>
                       Email:{" "}
-                      <a className="text-[var(--foreground)] underline decoration-gray-500 underline-offset-2 hover:text-[var(--accent)] transition-colors" href="mailto:yrahul221199@gmail.com">
+                      <a
+                        className="text-[var(--foreground)] underline decoration-gray-500 underline-offset-2 hover:text-[var(--accent)] transition-colors"
+                        href="mailto:yrahul221199@gmail.com"
+                      >
                         yrahul221199@gmail.com
                       </a>
                     </p>
@@ -392,18 +497,62 @@ export default function Home() {
           </aside>
 
           <div className="space-y-16 lg:max-w-3xl text-base leading-relaxed text-muted">
-            <section id="about" className="scroll-mt-24 space-y-3 animate-fade-up-soft">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">About</p>
-              <div className="space-y-5 max-w-2xl text-[var(--foreground)] rounded-lg border border-white/12 p-6 bg-[#222222] transition-colors hover:bg-[#252525]">
+            <section
+              id="about"
+              className="scroll-mt-24 space-y-10 animate-fade-up-soft"
+            >
+              <div className="space-y-6">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-white/60">
+                  ABOUT
+                </p>
+                <h1 className="text-[36px] font-semibold leading-[1.08] text-[var(--foreground)]">
+                  Building products that move metrics
+                </h1>
+
+                <div className="grid grid-cols-3 gap-6 pt-2 max-w-2xl">
+                  <div className="text-center">
+                    <p className="text-[36px] leading-none font-semibold text-[var(--foreground)]">
+                      2M+
+                    </p>
+                    <p className="mt-2 text-[14px] text-white/55">
+                      Job Applications
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[36px] leading-none font-semibold text-[var(--foreground)]">
+                      50+
+                    </p>
+                    <p className="mt-2 text-[14px] text-white/55">
+                      Enterprise Partners
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[36px] leading-none font-semibold text-[var(--foreground)]">
+                      8K+
+                    </p>
+                    <p className="mt-2 text-[14px] text-white/55">
+                      Students Reached
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 max-w-2xl space-y-5 rounded-2xl border border-white/12 bg-[var(--card-bg)] p-7 text-[var(--foreground)] transition-colors hover:bg-[var(--card-bg-hover)]">
                 {aboutParagraphs.map((paragraph, index) => (
-                  <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                  <p
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
                 ))}
               </div>
             </section>
 
             <CaseStudiesList studies={caseStudies} />
 
-            <section id="how-i-work" className="scroll-mt-24 space-y-8 animate-fade-up-soft">
+            <section
+              id="how-i-work"
+              className="scroll-mt-24 space-y-8 animate-fade-up-soft"
+            >
               <header className="space-y-2 border-b border-white/10 pb-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                   How I Work
@@ -412,41 +561,64 @@ export default function Home() {
                   I prefer clear systems over flashy solutions
                 </h2>
                 <p className="text-base text-muted max-w-2xl">
-                  First-person notes on how I approach problems, teams, and decisions.
+                  First-person notes on how I approach problems, teams, and
+                  decisions.
                 </p>
               </header>
-              <div className="space-y-5 rounded-lg border border-white/12 p-6 bg-[#222222] transition-colors hover:bg-[#252525]">
+              <div className="space-y-5 rounded-lg border border-white/12 bg-[var(--card-bg)] p-6 transition-colors hover:bg-[var(--card-bg-hover)]">
                 {howIWork.map((item) => (
                   <div
                     key={item.title}
                     className="space-y-2 border-b border-white/10 pb-5 last:border-none last:pb-0"
                   >
-                    <p className="text-lg font-semibold text-[var(--foreground)]">{item.title}</p>
-                    <p className="text-base leading-relaxed text-[#cfd2dc] max-w-2xl" dangerouslySetInnerHTML={{ __html: item.detail }} />
+                    <p className="text-lg font-semibold text-[var(--foreground)]">
+                      {item.title}
+                    </p>
+                    <p
+                      className="text-base leading-relaxed text-[#cfd2dc] max-w-2xl"
+                      dangerouslySetInnerHTML={{ __html: item.detail }}
+                    />
                   </div>
                 ))}
               </div>
             </section>
 
-            <section id="tools" className="scroll-mt-24 space-y-6 animate-fade-up-soft">
+            <section
+              id="tools"
+              className="scroll-mt-24 space-y-6 animate-fade-up-soft"
+            >
               <header className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">Tools</p>
-                <h2 className="text-2xl font-semibold leading-tight text-[var(--foreground)]">What I use and why</h2>
-                <p className="text-base text-muted max-w-2xl">Context, with familiar tools and logos.</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                  Tools
+                </p>
+                <h2 className="text-2xl font-semibold leading-tight text-[var(--foreground)]">
+                  What I use and why
+                </h2>
+                <p className="text-base text-muted max-w-2xl">
+                  Context, with familiar tools and logos.
+                </p>
               </header>
               <div className="space-y-6">
                 {toolGroups.map((group) => (
                   <div key={group.title} className="space-y-3">
-                    <p className="text-lg font-semibold text-[var(--foreground)]">{group.title}</p>
+                    <p className="text-lg font-semibold text-[var(--foreground)]">
+                      {group.title}
+                    </p>
                     <div className="space-y-3">
                       {group.items.map((item) => (
                         <div
                           key={item.name}
-                          className="hover-luminous flex items-center gap-3 rounded-xl border border-white/10 bg-[#222222] px-3 py-3 transition-all duration-200 hover:border-white/16 hover:bg-[#282828]"
+                          className="hover-luminous flex items-center gap-3 rounded-xl border border-white/10 bg-[var(--card-bg)] px-3 py-3 transition-all duration-200 hover:border-white/16 hover:bg-[var(--card-bg-hover)]"
                         >
                           {item.logo ? (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a1a1a] border border-white/10">
-                              <Image src={item.logo} alt={`${item.name} logo`} width={32} height={32} className="object-contain h-8 w-8" />
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[var(--background)]">
+                              <Image
+                                src={item.logo}
+                                alt={`${item.name} logo`}
+                                width={32}
+                                height={32}
+                                className="object-contain h-8 w-8"
+                              />
                             </div>
                           ) : (
                             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(255,255,255,0.06)] text-[11px] font-semibold text-muted">
@@ -454,8 +626,12 @@ export default function Home() {
                             </div>
                           )}
                           <div className="flex flex-col">
-                            <span className="text-base font-semibold text-[var(--foreground)] leading-snug">{item.name}</span>
-                            <span className="text-base text-muted leading-relaxed">{item.detail}</span>
+                            <span className="text-base font-semibold text-[var(--foreground)] leading-snug">
+                              {item.name}
+                            </span>
+                            <span className="text-base text-muted leading-relaxed">
+                              {item.detail}
+                            </span>
                           </div>
                         </div>
                       ))}
