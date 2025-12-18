@@ -565,21 +565,29 @@ export default function Home() {
                   decisions.
                 </p>
               </header>
-              <div className="space-y-5 rounded-lg border border-white/12 bg-[var(--card-bg)] p-6 transition-colors hover:bg-[var(--card-bg-hover)]">
-                {howIWork.map((item) => (
-                  <div
-                    key={item.title}
-                    className="space-y-2 border-b border-white/10 pb-5 last:border-none last:pb-0"
-                  >
-                    <p className="text-lg font-semibold text-[var(--foreground)]">
-                      {item.title}
-                    </p>
-                    <p
-                      className="text-base leading-relaxed text-[#cfd2dc] max-w-2xl"
-                      dangerouslySetInnerHTML={{ __html: item.detail }}
-                    />
-                  </div>
-                ))}
+              <div className="divide-y divide-white/10">
+                {howIWork.map((item, idx) => {
+                  const number = String(idx + 1).padStart(2, "0");
+                  return (
+                    <div
+                      key={item.title}
+                      className="flex gap-8 py-6"
+                    >
+                      <p className="w-10 text-[12px] font-medium tracking-[0.12em] text-white/45 tabular-nums">
+                        {number}
+                      </p>
+                      <div className="space-y-2">
+                        <p className="text-[18px] font-medium leading-tight text-white">
+                          {item.title}
+                        </p>
+                        <p
+                          className="max-w-3xl text-[14px] leading-relaxed text-[#888888]"
+                          dangerouslySetInnerHTML={{ __html: item.detail }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
@@ -588,50 +596,67 @@ export default function Home() {
               className="scroll-mt-24 space-y-6 animate-fade-up-soft"
             >
               <header className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-                  Tools
+                <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-white/60">
+                  TOOLS
                 </p>
-                <h2 className="text-2xl font-semibold leading-tight text-[var(--foreground)]">
-                  What I use and why
+                <h2 className="text-[36px] font-medium leading-tight text-white">
+                  My toolkit
                 </h2>
-                <p className="text-base text-muted max-w-2xl">
-                  Context, with familiar tools and logos.
+                <p className="text-[14px] text-[#888888]">
+                  What I use and why it matters
                 </p>
               </header>
-              <div className="space-y-6">
+
+              <div className="space-y-10 pt-2">
                 {toolGroups.map((group) => (
-                  <div key={group.title} className="space-y-3">
-                    <p className="text-lg font-semibold text-[var(--foreground)]">
+                  <div key={group.title} className="space-y-4">
+                    <p className="text-[14px] font-medium text-white/45">
                       {group.title}
                     </p>
-                    <div className="space-y-3">
+
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {group.items.map((item) => (
                         <div
                           key={item.name}
-                          className="hover-luminous flex items-center gap-3 rounded-xl border border-white/10 bg-[var(--card-bg)] px-3 py-3 transition-all duration-200 hover:border-white/16 hover:bg-[var(--card-bg-hover)]"
+                          className="hover-luminous flex items-center gap-4 rounded-xl border border-white/10 bg-[var(--card-bg)] px-4 py-4 transition-all duration-200 hover:border-white/16 hover:bg-[var(--card-bg-hover)]"
                         >
                           {item.logo ? (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[var(--background)]">
+                            <div
+                              className="box-border flex h-[32px] w-[32px] flex-none shrink-0 items-center justify-center overflow-hidden rounded"
+                              style={{
+                                padding: "6px",
+                                background:
+                                  "rgba(255,255,255,0.05) padding-box, rgba(255,255,255,0.15) content-box",
+                              }}
+                            >
                               <Image
                                 src={item.logo}
                                 alt={`${item.name} logo`}
-                                width={32}
-                                height={32}
-                                className="object-contain h-8 w-8"
+                                width={24}
+                                height={24}
+                                className="h-[24px] w-[24px] object-contain"
                               />
                             </div>
                           ) : (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(255,255,255,0.06)] text-[11px] font-semibold text-muted">
+                            <div
+                              className="box-border flex h-[32px] w-[32px] flex-none shrink-0 items-center justify-center overflow-hidden rounded text-[11px] font-semibold text-white/40"
+                              style={{
+                                padding: "6px",
+                                background:
+                                  "rgba(255,255,255,0.05) padding-box, rgba(255,255,255,0.15) content-box",
+                              }}
+                            >
                               —
                             </div>
                           )}
-                          <div className="flex flex-col">
-                            <span className="text-base font-semibold text-[var(--foreground)] leading-snug">
+
+                          <div className="min-w-0">
+                            <p className="truncate text-[16px] font-medium leading-snug text-white">
                               {item.name}
-                            </span>
-                            <span className="text-base text-muted leading-relaxed">
+                            </p>
+                            <p className="truncate text-[14px] leading-snug text-[#888888]">
                               {item.detail}
-                            </span>
+                            </p>
                           </div>
                         </div>
                       ))}
